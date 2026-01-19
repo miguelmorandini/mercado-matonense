@@ -8,91 +8,52 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Formulário de Teste',
+      title: 'Mercado Matonense',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: UserFormPage(),
+      home: UnderConstructionPage(),
     );
   }
 }
 
-class UserFormPage extends StatefulWidget {
-  @override
-  _UserFormPageState createState() => _UserFormPageState();
-}
-
-class _UserFormPageState extends State<UserFormPage> {
-  final _formKey = GlobalKey<FormState>();
-  String _name = '';
-  int? _age;
-
+class UnderConstructionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Formulário de Teste'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
+      backgroundColor: Colors.grey.shade100,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Nome',
-                  border: OutlineInputBorder(),
+              Icon(
+                Icons.construction,
+                size: 100,
+                color: Colors.orange,
+              ),
+              const SizedBox(height: 24),
+              Text(
+                'Estamos em construção',
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
                 ),
-                onSaved: (value) => _name = value ?? '',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira seu nome';
-                  }
-                  return null;
-                },
+                textAlign: TextAlign.center,
               ),
-              SizedBox(height: 16),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Idade',
-                  border: OutlineInputBorder(),
+              const SizedBox(height: 12),
+              Text(
+                'O Mercado Matonense está sendo desenvolvido.\nEm breve teremos novidades!',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey.shade700,
                 ),
-                keyboardType: TextInputType.number,
-                onSaved: (value) =>
-                    _age = value != null && value.isNotEmpty ? int.tryParse(value) : null,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira sua idade';
-                  }
-                  if (int.tryParse(value) == null) {
-                    return 'Digite um número válido';
-                  }
-                  return null;
-                },
+                textAlign: TextAlign.center,
               ),
-              SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState!.save();
-                    showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: Text('Dados enviados'),
-                        content: Text('Nome: $_name\nIdade: $_age'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: Text('Fechar'),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                },
-                child: Text('Enviar'),
-              ),
+              const SizedBox(height: 32),
+              CircularProgressIndicator(),
             ],
           ),
         ),

@@ -4,19 +4,24 @@
 
 import 'package:flutter/material.dart';
 import '../widgets/product_card.dart';
+import '../models/product_model.dart';
+import '../services/product_service.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  // Lista de produtos de exemplo
-  final List<Map<String, String>> products = const [
-    {"title": "Produto 1", "price": "R\$ 49,90"},
-    {"title": "Produto 2", "price": "R\$ 79,90"},
-    {"title": "Produto 3", "price": "R\$ 99,90"},
-    {"title": "Produto 4", "price": "R\$ 59,90"},
-    {"title": "Produto 5", "price": "R\$ 199,90"},
-    {"title": "Produto 6", "price": "R\$ 29,90"},
-  ];
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Future<List<Produto>> _produtos;
+
+  @override
+  void initState() {
+    super.initState();
+    _produtos = ProdutoService.getProdutos();// busca da API
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,27 +31,45 @@ class HomePage extends StatelessWidget {
     final maxCardWidth = screenWidth > 1200
         ? 250.0
         : screenWidth > 800
-        ? 200.0
-        : screenWidth * 0.45;
+            ? 200.0
+            : screenWidth * 0.45;
 
     // Ajusta quantidade de colunas automaticamente
     final crossAxisCount = (screenWidth / maxCardWidth).floor();
 
     return Scaffold(
       appBar: _buildAppBar(),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          mainAxisSpacing: 16,
-          crossAxisSpacing: 16,
-          childAspectRatio: 0.75,
-        ),
-        itemCount: products.length,
-        itemBuilder: (context, index) => ProductCard(
-          title: products[index]["title"]!,
-          price: products[index]["price"]!,
-        ),
+      body: FutureBuilder<List<Produto>>(
+        future: _produtos,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Erro: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('Nenhum produto encontrado'));
+          } else {
+            final produtos = snapshot.data!;
+            return GridView.builder(
+              padding: const EdgeInsets.all(16),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: crossAxisCount,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 0.75,
+              ),
+              itemCount: produtos.length,
+              itemBuilder: (context, index) {
+                final produto = produtos[index];
+                return ProductCard(
+                  title: produto.title,
+                  price: 'R\$ ${produto.price.toStringAsFixed(2)}',
+                  //imageUrl: produto.image, // se ProductCard suportar imagem
+                );
+              },
+            );
+          }
+        },
       ),
     );
   }

@@ -1,0 +1,1 @@
+ C:\\Users\\migue\\Documents\\mercado-matonense\\.dart_tool\\flutter_build\\bead501ec5f28eb392f86d924dc4a789\\dart_build_result.json: 

@@ -4,7 +4,7 @@ import '../models/product_model.dart';
 
 class ProdutoService {
   // Substitua pelo IP da sua máquina
-  static const String baseUrl = 'http://192.168.1.20:7084/api/produtos';
+  static const String baseUrl = 'https://mercado-matonense-api.onrender.com/api/produtos';
 
   static Future<List<Produto>> getProdutos() async {
     final response = await http.get(Uri.parse(baseUrl));

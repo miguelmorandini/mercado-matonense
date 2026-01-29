@@ -3,7 +3,7 @@
 // tema, rotas e página inicial.
 
 import 'package:flutter/material.dart';
-import 'features/home/pages/home_page.dart';
+import 'features/home/home_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

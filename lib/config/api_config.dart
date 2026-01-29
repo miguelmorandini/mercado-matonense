@@ -1,19 +1,13 @@
 import 'package:flutter/foundation.dart';
 
 class ApiConfig {
-  static String get baseUrl {
-    // Web
-    if (kIsWeb) {
-      return const String.fromEnvironment(
-        'API_URL',
-        defaultValue: 'https://mercado-matonense-api.onrender.com',
-      );
-    }
+  //static const String api = 'http://localhost:5000';
+  static const String api = 'https://mercado-matonense-api.onrender.com';
 
-    // Mobile / Desktop
-    return const String.fromEnvironment(
-      'API_URL',
-      defaultValue: 'https://mercado-matonense-api.onrender.com',
-    );
+  static String get baseUrl {
+    final url = api;
+
+    debugPrint('🌐 API ativa: $url');
+    return url;
   }
 }

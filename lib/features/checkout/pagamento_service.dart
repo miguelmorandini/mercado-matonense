@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
 import '../../config/api_config.dart';
 
 class PagamentoService {
@@ -25,6 +24,6 @@ class PagamentoService {
     }
 
     final data = jsonDecode(response.body);
-    return data['initPoint'];
+    return data['preferenceId']; // preferenceId ou initPoint
   }
 }

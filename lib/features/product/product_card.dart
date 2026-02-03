@@ -1,8 +1,6 @@
-// Widget responsável por exibir um produto em formato de card.
-// Utilizado na Home para listar produtos em grid.
-
 import 'package:flutter/material.dart';
-import '../checkout/checkout_page.dart';
+import '../checkout/checkout_brick_page.dart';
+import '../checkout/pagamento_service.dart';
 
 class ProductCard extends StatelessWidget {
   final String title;
@@ -16,20 +14,34 @@ class ProductCard extends StatelessWidget {
     this.imageUrl,
   });
 
+  Future<void> _pagarAgora(BuildContext context) async {
+    try {
+      // Chama backend e cria a preferência
+      final preferenceId = await PagamentoService.criarPreferencia(
+        title: title,
+        price: price,
+      );
+
+      // Navega para Checkout Brick
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => CheckoutBrickPage(preferenceId: preferenceId),
+        ),
+      );
+    } catch (e) {
+      debugPrint('❌ Erro ao criar preferência: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Erro ao iniciar pagamento')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(8),
-      onTap: () {
-        debugPrint('🟢 Produto: $title | Preço: $price');
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => CheckoutPage(title: title, price: price),
-          ),
-        );
-      },
-
+      onTap: () => _pagarAgora(context),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Card(
@@ -37,7 +49,6 @@ class ProductCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // imagem proporcional e centralizada
               Container(
                 height: 150,
                 width: double.infinity,
@@ -54,8 +65,6 @@ class ProductCard extends StatelessWidget {
                         child: Icon(Icons.image, size: 60, color: Colors.white),
                       ),
               ),
-
-              // informações do produto
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: Column(
@@ -70,22 +79,13 @@ class ProductCard extends StatelessWidget {
                         fontSize: 18,
                       ),
                     ),
-
                     const SizedBox(height: 4),
                     const Text(
                       'Frete grátis',
                       style: TextStyle(color: Colors.green),
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) =>
-                                CheckoutPage(title: title, price: price),
-                          ),
-                        );
-                      },
+                      onPressed: () => _pagarAgora(context),
                       child: const Text('Comprar'),
                     ),
                   ],

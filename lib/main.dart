@@ -1,6 +1,3 @@
-// Ponto de entrada da aplicação.
-// Responsável por inicializar o Flutter e executar o widget raiz (`App`).
-
 import 'package:flutter/material.dart';
 import 'features/home/home_page.dart';
 

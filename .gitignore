@@ -42,3 +42,59 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Build outputs
+/build/
+
+# Generated plugin registrant
+**/generated_plugin_registrant.*
+
+# Flutter web build
+/web/**/flutter_service_worker.js
+
+# Dart tool directory
+.dart_tool/
+
+# Pub
+/.packages
+
+# Flutter-specific files
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# IDE files
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+# macOS
+**/macos/Flutter/ephemeral/
+
+# Windows
+**/windows/Flutter/ephemeral/
+
+# Linux
+**/linux/Flutter/ephemeral/
+
+# Xcode
+*.xcworkspace
+!default.xcworkspace
+
+# JetBrains
+*.log
+
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/

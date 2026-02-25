@@ -143,5 +143,7 @@ Não há persistência local; dados são sempre buscados da API.
 - Adicionar backend próprio se necessário, com microsserviços.
 - Expandir para múltiplas regiões, com configurações dinâmicas.
 
-Esta análise é baseada no código atual; conforme o desenvolvimento avança, o design evoluirá. Para discussões ou implementações, consulte o [requirements.md](requirements.md).</content>
+Esta análise é baseada no código atual; conforme o desenvolvimento avança, o design evoluirá. Para discussões ou implementações, consulte o [requirements.md](requirements.md).
+
+> **Relacionamento com o planejamento:** o documento [planning.md](docs/planning.md) deriva diretamente dos requisitos funcionais descritos aqui. Ele detalha como cada RF será abordado em sprints, tornando a transição de análise para execução mais transparente.</content>
 <parameter name="filePath">c:\dev\sps\mercado\mercado-matonense\design.md

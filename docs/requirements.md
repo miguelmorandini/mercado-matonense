@@ -166,5 +166,7 @@ O Mercado Matonense é um marketplace digital projetado para conectar comércios
 4. Lançamento e monitoramento de métricas.
 5. Expansão para cidades vizinhas.
 
-Este documento será atualizado conforme o desenvolvimento avança. Para dúvidas ou sugestões, entre em contato com a equipe de desenvolvimento.</content>
+Este documento será atualizado conforme o desenvolvimento avança. Para dúvidas ou sugestões, entre em contato com a equipe de desenvolvimento.
+
+> **Planejamento:** As RFs descritas acima têm um desdobramento detalhado no arquivo [planning.md](docs/planning.md), que veta tarefas, critérios de aceitação e estimativas de sprints. Consulte-o para organizar sprints e distribuir trabalho.</content>
 <parameter name="filePath">c:\dev\sps\mercado\mercado-matonense\requirements.md

@@ -4,11 +4,11 @@ Uma aplicação Flutter para o Mercado Matonense, um marketplace que permite aos
 
 ## Requisitos do Sistema
 
-Para uma visão completa dos requisitos funcionais, não funcionais e técnicos do projeto, consulte o documento [requirements.md](requirements.md). Ele detalha a arquitetura, funcionalidades e planos de expansão para múltiplas cidades/regiões.
+Para uma visão completa dos requisitos funcionais, não funcionais e técnicos do projeto, consulte o documento [requirements.md](docs/requirements.md). Ele detalha a arquitetura, funcionalidades e planos de expansão para múltiplas cidades/regiões.
 
 ## Design e Arquitetura
 
-Para entender a arquitetura atual ("as is") da aplicação, incluindo pontos fortes, fracos e sugestões de melhoria, consulte o documento [design.md](design.md). Ele analisa o código fonte e propõe evoluções.
+Para entender a arquitetura atual ("as is") da aplicação, incluindo pontos fortes, fracos e sugestões de melhoria, consulte o documento [design.md](docs/design.md). Ele analisa o código fonte e propõe evoluções.
 
 ## Funcionalidades
 
